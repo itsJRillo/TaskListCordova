@@ -14,7 +14,6 @@
 			viewport-fit=cover">
 			<meta name="color-scheme" content="light dark">
 		-->
-
 		<link rel="stylesheet" type="text/css" href="js/jquery-1.5.0.mobile.min.css">
 		<style>
 			/* For avoiding title truncation in wp8 */
@@ -27,7 +26,7 @@
 					margin: 5px !important;
 					position: relative !important;
 			}
-			#remove, #edit{
+			.remove, .edit{
 				appearance: none;
 				background-color: #FAFBFC;
 				border: 1px solid rgba(27, 31, 35, 0.15);
@@ -53,7 +52,8 @@
 				word-wrap: break-word;
 			}
 		</style>
-		<title>Hello World</title>
+		<script src="js/index.js"></script>
+		<title>List View</title>
 	</head>
 	<body>
 		
@@ -92,32 +92,6 @@
 					$.mobile.defaultPageTransition = "none";
 					$.mobile.defaultDialogTransition = "none";
 			});
-		</script>
-		<script type="text/javascript">
-			function addToList(){ 
-				let item = prompt("Enter a name for the item: ");
-				var elem = $(
-					"<li> <div>" +
-						"<a href='#' style='all: unset; font-weight: 600;' id='item'>"+ item +"</a> "+
-						"<a href='#' style='all: unset;'> <button id='remove'>Remove Item</button> </a> "+
-						"<a href='#editPage'> <button id='edit'>Edit Item</button> </a> "+
-					"</div> </li>");
-
-				$("#remove",elem).click((e) => {
-					$(e.target).parent().parent().parent().remove();
-					return false;		
-				})
-
-				$("ul").append(elem);
-				$("ul").listview("refresh");
-			}
-
-			function editItem(){
-				let newItemName = $("#newLabel").val();
-				console.log(newItemName)
-				$("#item").html(newItemName);
-				window.location = "#";
-			}
 		</script>
 		<script type="text/javascript" src="js/jquery-1.5.0.mobile.min.js"></script>
 	</body>

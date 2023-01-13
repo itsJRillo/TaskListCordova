@@ -25,3 +25,43 @@ function onDeviceReady() {
     console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
     document.getElementById('deviceready').classList.add('ready');
 }
+
+const items = {};
+localStorage.setItem("item", JSON.stringify(items));
+
+function addToList(){ 
+    let item = "";
+
+    while(item == null || item == ""){
+        item = prompt("Enter a name for the item: ");
+    }
+
+    var elem = $(
+        "<li> <div>" +
+            "<a href='#' style='all: unset; font-weight: 600;' class='item'>"+ item +"</a> "+
+            "<a href='#' style='all: unset;'> <button class='remove'>Remove Item</button> </a> "+
+            "<a href='#editPage'> <button class='edit'>Edit Item</button> </a> "+
+        "</div> </li>");
+
+        localStorage.parse();
+    items[item] = elem[0].innerHTML;
+
+    $(".remove",elem).click((e) => {
+        let item = $(e.target).parent().parent().parent();
+        item.remove();
+        localStorage.removeItem(item.val());
+        return false;		
+    })
+
+    $("ul").append(elem);
+    
+    localStorage.setItem("item", JSON.stringify(items));
+    $("ul").listview("refresh");
+}
+
+function editItem(){
+    let newItemName = $("#newLabel").val();
+    console.log(newItemName)
+    $(".item").html(newItemName);
+    window.location = "#";
+}
